@@ -34,7 +34,7 @@ def content_line(line, number, components, properties, stack, state):
         raise IcsError(f"line {number}: invalid property name")
 
     if name in (b"BEGIN", b"END"):
-        if prefix != name:
+        if prefix.upper() != name:
             raise IcsError(f"line {number}: component marker cannot have parameters")
         raw_component = line[delimiter + 1 :]
         component = raw_component.upper()
@@ -149,3 +149,4 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
